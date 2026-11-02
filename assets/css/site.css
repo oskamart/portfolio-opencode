@@ -461,6 +461,53 @@ sup { font-size: 0.68em; line-height: 0; }
 .credit__b a { color: var(--red); text-decoration-color: color-mix(in oklab, var(--red) 40%, transparent); text-underline-offset: 2px; }
 .credit__b a:hover { text-decoration-color: var(--red); }
 
+/* ── career ─────────────────────────────────────────────────────────────── */
+.career {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 0;
+  border-top: 2px solid var(--rule-ink);
+}
+.cv {
+  padding: 1.5rem 1.75rem 1.75rem 0;
+  border-bottom: var(--rule-w) solid var(--rule);
+  border-right: var(--rule-w) solid var(--rule-soft);
+  margin-right: -1px;
+  display: flex; flex-direction: column;
+}
+.cv__when {
+  font-family: var(--mono); font-size: 0.6875rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.55rem;
+}
+.cv__role {
+  font-size: 1.0938rem; font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.25;
+}
+.cv__where {
+  font-family: var(--mono); font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin-top: 0.3rem;
+  padding-bottom: 0.8rem;
+}
+.cv__b {
+  color: var(--ink-mid);
+  font-size: 0.9375rem;
+  line-height: 1.58;
+}
+.cv__note {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: var(--rule-w) solid var(--rule-soft);
+  font-size: 0.875rem;
+  color: var(--ink-dim);
+  line-height: 1.55;
+}
+
 /* ── figures ────────────────────────────────────────────────────────────── */
 .figs {
   max-width: var(--max);
