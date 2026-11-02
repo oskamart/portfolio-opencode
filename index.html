@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oskar Mårtensson — hardware verification, inference, and the instruments around them</title>
-<meta name="description" content="Portfolio: an agentic UVM verification engine delivered to CERN, a C/CUDA inference server, the harness that measures models on hardware design, and the graphics and research work beside it. Every figure is measured from source.">
+<meta name="description" content="Portfolio: a gateway repair layer that makes a verification engine usable against a real gateway, a C/CUDA inference server, the harness that measures models on hardware design, and the research and instruments around it. Every figure is measured from source.">
 <meta name="color-scheme" content="light dark">
 <meta property="og:title" content="Oskar Mårtensson — engineering portfolio">
 <meta property="og:description" content="Agentic hardware verification, a local inference server, and the measurement harness that decides whether any of it works.">
@@ -70,16 +70,15 @@
     </h1>
 
     <p class="hero__lede">
-      A verification engine that turns RTL into signed-off test plans and
-      testbenches. An inference server written in C that runs the models
-      locally. A harness that holds those models to a benchmark they cannot
-      argue with. And the instruments, papers and notebooks that fill in
-      around them.
+      A gateway repair layer that makes a verification engine usable against a
+      real gateway. A harness that holds models to a benchmark they cannot argue
+      with. An inference server written in C that runs those models on the same
+      silicon. And the instruments, papers and notebooks that fill in around them.
     </p>
 
     <dl class="hero__stats">
       <div>
-        <dt>Lines written, this repository</dt>
+        <dt>Lines written, own work</dt>
         <dd data-metric="totals.local_code_loc">—</dd>
       </div>
       <div>
@@ -116,7 +115,7 @@
   <div class="sect__head">
     <h2 class="sect__title">The systems</h2>
     <p class="sect__note">
-      Four that carry the weight. Each was measured, not estimated, and the
+      Four that carry the weight, each measured rather than estimated. The
       numbers below are the ones the build reports.
     </p>
   </div>
@@ -125,75 +124,83 @@
 
     <article class="card card--lead">
       <header class="card__head">
-        <p class="card__kind">Agentic hardware verification</p>
-        <h3 class="card__title">UVMStack <span class="card__alias">/ AVA</span></h3>
+        <p class="card__kind">Gateway repair</p>
+        <h3 class="card__title">Haelo</h3>
         <p class="card__sum">
-          An agentic system that reads RTL and design intent and produces a
-          reviewable UVM workflow — test plan, coverage plan, testbench — with
-          the human sign-off gates enforced as exit codes rather than good
-          intentions. Delivered to CERN as a desktop application with the
-          engine behind it.
+          A small OpenAI-compatible proxy that sits between a verification engine
+          and any OpenAI-compatible gateway. The engine does not change — it talks
+          to the proxy exactly as it would talk to the gateway. This is the layer
+          that turned a mostly-failing evaluation into a mostly-passing one, and
+          it is the operator's own work.
         </p>
       </header>
 
       <div class="card__grid">
         <dl class="spec">
-          <div><dt>Written</dt><dd><span data-metric="systems.uvmstack.code_loc">—</span> LOC</dd></div>
-          <div><dt>Files</dt><dd><span data-metric="systems.uvmstack.files">—</span></dd></div>
-          <div><dt>Commits</dt><dd><span data-metric="systems.uvmstack.commits">—</span></dd></div>
-          <div><dt>Stack</dt><dd>Python, TypeScript, SystemVerilog, Electron</dd></div>
+          <div><dt>Written</dt><dd><span data-metric="systems.haelo.code_loc">—</span> LOC</dd></div>
+          <div><dt>Dependencies</dt><dd>none — standard library only</dd></div>
+          <div><dt>Licence</dt><dd>Proprietary, trial</dd></div>
+          <div><dt>Measured</dt><dd>9 of 9 designs repaired</dd></div>
         </dl>
         <div class="card__body">
-          <h4>What makes it hold up</h4>
+          <h4>What it actually does</h4>
           <ul>
-            <li><b>Reproducibility is the product.</b> Every run emits a commit-ready bundle:
-              the generated testbench, the plan workbook, a trajectory of every model and
-              tool call with hashes, and a manifest pinning model version, skill-pack SHA,
-              simulator version and seed, RTL hash, spec hash, plan hash and final coverage.
-            </li>
-            <li><b>Three pluggable layers.</b> Agent, model and simulation backend are each a
-              Python <code>Protocol</code> with several implementations, pinned in the run
-              manifest so a replay reconstructs the exact stack that produced a result.</li>
-            <li><b>Failure is loud.</b> No silent degradation. Any loop over paid calls
-              persists each unit the moment it completes, so a crash costs the in-flight
-              unit and nothing else.</li>
-            <li><b>Two testbench dialects</b> — UVM and plain SystemVerilog — share one
-              input-preparation path, so the two styles cannot disagree about ports, clock
-              roles or plan content.</li>
+            <li>Caps thinking per request and fits each request to the model's real
+              context window — the failure that cost the uncapped run <em>an answer
+              entirely</em>.</li>
+            <li>Repairs a schema-invalid answer by re-sending the failed turn as a
+              <em>continuation</em> carrying the validation errors, rather than restarting.</li>
+            <li>Keeps a long call alive past the client's silence timeout, and runs the
+              engine's own hard checks before answering.</li>
+            <li>Layer-zero control strings per model — <code>r-bare</code>,
+              <code>clamp-full</code>, <code>lift=N</code>, <code>salvage</code>,
+              <code>chk-gate</code> — measured per gateway, not guessed.</li>
           </ul>
+          <p class="card__aside">
+            On the same gateway, the bare engine took <b>8 of 9</b> designs through plan
+            and coverage; with Haelo in front of it, <b>9 of 9</b>. The proxy changed no
+            engine code. It changed the request.
+          </p>
         </div>
       </div>
     </article>
 
     <article class="card">
       <header class="card__head">
-        <p class="card__kind">Local inference</p>
-        <h3 class="card__title">Colibri</h3>
+        <p class="card__kind">Delivery</p>
+        <h3 class="card__title">The CERN programme</h3>
         <p class="card__sum">
-          An inference server written from the ground up in C, with CUDA, Metal and
-          Vulkan backends behind one interface — so the models that judge the
-          verification engine can run on the machine next to it, on the same silicon,
-          with nothing phoning home.
+          Packaging someone else's verification engine into something a research
+          group can evaluate: the desktop application, the gateway provider, the
+          licence gate, the settings model, and the day-one probe that measures
+          what a gateway will actually accept before a single design is run.
         </p>
       </header>
       <div class="card__grid">
         <dl class="spec">
-          <div><dt>Files</dt><dd><span data-metric="systems.oden_colibri.files">—</span></dd></div>
-          <div><dt>Vulkan build</dt><dd><span data-metric="systems.oden_colibri_vk.files">—</span> files</dd></div>
-          <div><dt>Abliteration tooling</dt><dd><span data-metric="systems.oden_colibri_ab.files">—</span> files</dd></div>
-          <div><dt>Written in</dt><dd>C, CUDA, Metal, Python</dd></div>
+          <div><dt>App written</dt><dd><span data-metric="systems.cern_app.code_loc">—</span> LOC</dd></div>
+          <div><dt>Files</dt><dd><span data-metric="systems.cern_app.files">—</span></dd></div>
+          <div><dt>App domains</dt><dd>14 feature modules</dd></div>
+          <div><dt>The engine</dt><dd>UVMStack — by Trishna Raj</dd></div>
         </dl>
         <div class="card__body">
-          <h4>Why it exists</h4>
+          <h4>What the delivery is</h4>
           <ul>
-            <li>The evaluation harness needs a model it controls end to end: same build,
-              same quantisation, same context length, no API in the loop. A measured result
-              is worth nothing if the serving stack is a moving target.</li>
-            <li>One core, three backends — CUDA for the discrete workstation GPU, Metal for
-              the laptop, Vulkan for the card that has no CUDA path at all.</li>
-            <li>It reports its own internals: a per-turn breakdown of attention, expert
-              matmul, expert disk and head time, which is what makes prefill-versus-decode
-              a measurement rather than a guess.</li>
+            <li><b>The engine is a dependency, not a claim.</b> UVMStack is
+              <a href="https://github.com/trishinraj/uvm_engine" rel="noopener">Trishna
+              Raj's</a> work — measured at
+              <span data-metric="dependencies.uvmstack.code_loc">—</span> LOC, credited
+              to its author, and evaluated here rather than presented as the
+              operator's own.</li>
+            <li>What was added around it: an Electron and React front end with
+              fourteen feature domains, an OpenAI-compatible gateway provider, a
+              licence gate that refuses to run an unlicensed build, and a five-layer
+              settings resolution where a project may tune a model but may not
+              redirect where requests go.</li>
+            <li>The day-one probe asks a gateway twelve short questions — does it
+              honour a thinking budget, will it continue a cut-off answer, is it
+              repeatable at temperature zero — and reports the answers before
+              anything else is attempted.</li>
           </ul>
         </div>
       </div>
@@ -204,9 +211,9 @@
         <p class="card__kind">Measurement harness</p>
         <h3 class="card__title">Oden Flow</h3>
         <p class="card__sum">
-          The runtime that decides whether a model can actually do the job. A frozen
-          benchmark tree, a SHA-256 manifest checked before every stage, and a gate loop
-          that will not let a model skip a step.
+          The runtime that decides whether a model can actually do the job. A
+          frozen benchmark tree, a SHA-256 manifest checked before every stage, and
+          a gate loop that will not let a model skip a step.
         </p>
       </header>
       <div class="card__grid">
@@ -236,41 +243,51 @@
 
     <article class="card">
       <header class="card__head">
-        <p class="card__kind">Gateway repair</p>
-        <h3 class="card__title">Haelo</h3>
+        <p class="card__kind">Local inference</p>
+        <h3 class="card__title">Colibri</h3>
         <p class="card__sum">
-          A small OpenAI-compatible proxy that sits between the engine and any
-          OpenAI-compatible gateway. The engine does not change — it talks to the
-          proxy exactly as it would talk to the gateway.
+          An inference server written from the ground up in C, with CUDA, Metal and
+          Vulkan backends behind one interface — so the models that judge the
+          engine can run on the machine next to it, on the same silicon, with
+          nothing phoning home.
         </p>
       </header>
       <div class="card__grid">
         <dl class="spec">
-          <div><dt>Written</dt><dd><span data-metric="systems.haelo.code_loc">—</span> LOC</dd></div>
-          <div><dt>Dependencies</dt><dd>none — standard library only</dd></div>
-          <div><dt>Licence</dt><dd>Proprietary, trial</dd></div>
-          <div><dt>Measured</dt><dd>9 of 9 designs repaired</dd></div>
+          <div><dt>Files</dt><dd><span data-metric="systems.oden_colibri.files">—</span></dd></div>
+          <div><dt>Vulkan build</dt><dd><span data-metric="systems.oden_colibri_vk.files">—</span> files</dd></div>
+          <div><dt>Abliteration tooling</dt><dd><span data-metric="systems.oden_colibri_ab.files">—</span> files</dd></div>
+          <div><dt>Written in</dt><dd>C, CUDA, Metal, Python</dd></div>
         </dl>
         <div class="card__body">
-          <h4>What it actually does</h4>
+          <h4>Why it exists</h4>
           <ul>
-            <li>Caps thinking per request and fits each request to the model's real context
-              window — the failure that cost the uncapped run <em>an answer entirely</em>.</li>
-            <li>Repairs a schema-invalid answer by re-sending the failed turn as a
-              <em>continuation</em> carrying the validation errors, rather than restarting.</li>
-            <li>Keeps a long call alive past the client's silence timeout, and runs the
-              engine's own hard checks before answering.</li>
+            <li>The evaluation harness needs a model it controls end to end: same build,
+              same quantisation, same context length, no API in the loop. A measured result
+              is worth nothing if the serving stack is a moving target.</li>
+            <li>One core, three backends — CUDA for the discrete workstation GPU, Metal for
+              the laptop, Vulkan for the card that has no CUDA path at all.</li>
+            <li>It reports its own internals: a per-turn breakdown of attention, expert
+              matmul, expert disk and head time, which is what makes prefill-versus-decode
+              a measurement rather than a guess.</li>
           </ul>
-          <p class="card__aside">
-            On the same gateway, the bare engine took <b>8 of 9</b> designs through plan and
-            coverage; with Haelo in front of it, <b>9 of 9</b>. The proxy changed no engine
-            code. It changed the request.
-          </p>
         </div>
       </div>
     </article>
 
   </div>
+
+  <aside class="credit">
+    <p class="credit__lbl">Measured, not mine</p>
+    <p class="credit__b">
+      <b>UVMStack (AVA)</b> — the verification engine these systems attach to, by
+      <a href="https://github.com/trishinraj/uvm_engine" rel="noopener">Trishna Raj</a>.
+      <span data-metric="dependencies.uvmstack.code_loc">—</span> LOC, built by its
+      author and evaluated here. The work on this page is the layer that makes it
+      usable, and the harness that judges it.
+    </p>
+  </aside>
+
 </section>
 
 <!-- ── evidence ───────────────────────────────────────────────────────────── -->
@@ -549,8 +566,9 @@
   <div class="end__in">
     <h2 class="end__t">Tell me what you need measured.</h2>
     <p class="end__b">
-      Currently delivering UVMStack and Haelo into an evaluation programme, with a
-      public web IDE and a hardware benchmark behind it.
+      Currently delivering the CERN evaluation programme — the gateway repair
+      layer, the desktop app, and the licence and settings work around someone
+      else's engine — with a public web IDE and a hardware benchmark behind it.
     </p>
     <p class="end__actions">
       <a class="btn btn--key" href="mailto:oskar@osys.one">oskar@osys.one</a>

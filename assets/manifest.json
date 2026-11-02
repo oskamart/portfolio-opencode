@@ -1,18 +1,9 @@
 {
-  "generated": "2026-11-02T12:48:24+00:00",
+  "generated": "2026-11-02T12:56:54+00:00",
   "generator": "build/opencode-manifest.py",
   "agent": "opencode",
   "backup_index": "/home/o/.local/share/origo-backup/cache/entries/20261024T161452607198Z-b49d2c4058c6.sqlite",
   "systems": {
-    "uvmstack": {
-      "files": 752,
-      "code_loc": 128687,
-      "doc_loc": 22546,
-      "bytes": 6844512,
-      "commits": 303,
-      "source": "local",
-      "label": "UVMStack (AVA)"
-    },
     "haelo": {
       "files": 16,
       "code_loc": 7503,
@@ -30,6 +21,15 @@
       "commits": 122,
       "source": "local",
       "label": "Oden Flow"
+    },
+    "cern_app": {
+      "files": 198,
+      "code_loc": 41949,
+      "doc_loc": 0,
+      "bytes": 1476930,
+      "commits": 0,
+      "source": "local",
+      "label": "CERN delivery (the desktop app)"
     },
     "ardverium": {
       "files": 88,
@@ -239,13 +239,26 @@
       "label": "Handbooks"
     }
   },
+  "dependencies": {
+    "uvmstack": {
+      "files": 752,
+      "code_loc": 128687,
+      "doc_loc": 22546,
+      "bytes": 6844512,
+      "commits": 0,
+      "label": "UVMStack (AVA)",
+      "author": "Trishna Raj",
+      "url": "https://github.com/trishinraj/uvm_engine",
+      "note": "The verification engine. Delivered to CERN and evaluated here; not the operator's own work."
+    }
+  },
   "totals": {
-    "local_code_loc": 377097,
-    "local_files": 1676,
+    "local_code_loc": 290359,
+    "local_files": 1122,
     "remote_files": 29871,
-    "files": 31547,
-    "commits": 432,
-    "bytes": 391898089
+    "files": 30993,
+    "commits": 129,
+    "bytes": 386530507
   },
   "taa_core": {
     "loc": 2562,

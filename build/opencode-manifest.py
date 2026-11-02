@@ -27,12 +27,12 @@ from pathlib import Path
 HOME = Path.home()
 
 # Local trees, measured directly.
+#
+# Note on UVMStack: the engine (uvm_engine) is Trishna Raj's work —
+# git@github.com:trishinraj/uvm_engine — and is not counted here as the
+# operator's own. It is measured separately under "dependencies" so the page
+# can state its size honestly while crediting it to its author.
 LOCAL = {
-    "uvmstack": {
-        "label": "UVMStack (AVA)",
-        "root": "oden-uvm-staging/uvm_engine-v2",
-        "repo": "oden-uvm-staging/uvm_engine",
-    },
     "haelo": {
         "label": "Haelo",
         "root": "Desktop/haelo-proxy",
@@ -42,6 +42,11 @@ LOCAL = {
         "label": "Oden Flow",
         "root": "oden-uvm-staging/oden_flow",
         "repo": "oden-uvm-staging/oden_flow",
+    },
+    "cern_app": {
+        "label": "CERN delivery (the desktop app)",
+        "root": "Desktop/uvm-app-cern-classic/frontend/src",
+        "repo": None,
     },
     "ardverium": {
         "label": "Ardverium",
@@ -82,6 +87,19 @@ LOCAL = {
         "label": "District heating",
         "root": "Desktop/district-heating-workbench",
         "repo": None,
+    },
+}
+
+# Work that exists but is not the operator's own. Measured, credited, and
+# kept out of the totals.
+DEPENDENCIES = {
+    "uvmstack": {
+        "label": "UVMStack (AVA)",
+        "author": "Trishna Raj",
+        "url": "https://github.com/trishinraj/uvm_engine",
+        "root": "oden-uvm-staging/uvm_engine-v2",
+        "note": "The verification engine. Delivered to CERN and evaluated here; "
+                "not the operator's own work.",
     },
 }
 
@@ -280,6 +298,17 @@ def main() -> int:
         stats["label"] = spec["label"]
         systems[key] = stats
 
+    # Work that is measured but not the operator's own.
+    dependencies = {}
+    for key, spec in DEPENDENCIES.items():
+        stats = count_tree(HOME / spec["root"])
+        stats["commits"] = git_commits(HOME / spec["root"])
+        stats["label"] = spec["label"]
+        stats["author"] = spec["author"]
+        stats["url"] = spec["url"]
+        stats["note"] = spec["note"]
+        dependencies[key] = stats
+
     index = find_backup_index()
     if index:
         for prefix, label in REMOTE.items():
@@ -310,6 +339,7 @@ def main() -> int:
         "agent": "opencode",
         "backup_index": str(index) if index else None,
         "systems": systems,
+        "dependencies": dependencies,
         "totals": totals,
         "taa_core": measure_taa_core(),
     }
@@ -321,13 +351,17 @@ def main() -> int:
     out.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 
     print(f"wrote {out}")
+    print("  own work:")
     for key, stats in sorted(systems.items(), key=lambda x: -x[1]["files"]):
         tag = "  (Oden, via backup)" if stats["source"] != "local" else ""
         loc = stats.get("code_loc")
         size = f"{loc:>8,} loc  " if loc is not None else "          "
-        print(f"  {key:26s} {size}{stats['files']:>6} files{tag}")
-    print(f"  {'TOTAL (local lines)':26s} {totals['local_code_loc']:>8,} loc")
-    print(f"  {'TOTAL (files, both hosts)':26s} {totals['files']:>8,} files")
+        print(f"    {key:24s} {size}{stats['files']:>6} files{tag}")
+    print(f"    {'TOTAL (local lines)':24s} {totals['local_code_loc']:>8,} loc")
+    print(f"    {'TOTAL (files, both hosts)':24s} {totals['files']:>8,} files")
+    print("  measured, not mine:")
+    for key, stats in dependencies.items():
+        print(f"    {key:24s} {stats['code_loc']:>8,} loc  by {stats['author']}")
     print(f"  taa core: {manifest['taa_core']['loc']:,} LOC, "
           f"identical={manifest['taa_core']['identical_across_designs']}")
     return 0

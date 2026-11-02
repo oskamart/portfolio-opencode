@@ -376,7 +376,7 @@ sup { font-size: 0.68em; line-height: 0; }
   align-content: start;
 }
 @media (min-width: 46rem) {
-  .card__grid { grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr); }
+  .card__grid { grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); }
 }
 
 /* spec list */
@@ -436,6 +436,30 @@ sup { font-size: 0.68em; line-height: 0; }
   line-height: 1.55;
 }
 .card__aside b { color: var(--red); }
+
+/* the "measured, not mine" note */
+.credit {
+  max-width: var(--max);
+  margin: 2.25rem auto 0;
+  padding: 1.35rem 1.5rem;
+  background: var(--paper-3);
+  border-left: 2px solid var(--ink);
+}
+.credit__lbl {
+  font-family: var(--mono); font-size: 0.6875rem;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.6rem;
+}
+.credit__b {
+  color: var(--ink-mid);
+  font-size: 0.9688rem;
+  line-height: 1.58;
+  max-width: 72ch;
+}
+.credit__b b { color: var(--ink); }
+.credit__b a { color: var(--red); text-decoration-color: color-mix(in oklab, var(--red) 40%, transparent); text-underline-offset: 2px; }
+.credit__b a:hover { text-decoration-color: var(--red); }
 
 /* ── figures ────────────────────────────────────────────────────────────── */
 .figs {
