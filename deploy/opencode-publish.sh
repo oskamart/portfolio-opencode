@@ -18,7 +18,7 @@ DRY=0
 OWNER="oskamart"
 REPO="portfolio-opencode"
 BRANCH="main"
-DOMAIN="osys.one"
+DOMAIN="opencode.osys.one"
 
 say() { printf '\033[36m▸\033[0m %s\n' "$*"; }
 ok()  { printf '\033[32m✓\033[0m %s\n' "$*"; }
@@ -75,10 +75,10 @@ Co-Authored-By: opencode <opencode@opencode.ai>"
   ok "committed"
 fi
 
-# The CNAME binds the domain to this Pages site. It is part of the source,
-# so every push keeps it — but a stray delete would detach the domain
+# The CNAME binds this site's hostname to the Pages site. It is part of the
+# source, so every push keeps it — but a stray delete would detach the domain
 # silently, so it is restored and checked before pushing.
-if [[ ! -f CNAME ]] || [[ "$(cat CNAME)" != "$DOMAIN" ]]; then
+if [[ ! -f CNAME ]] || [[ "$(tr -d '\r\n' < CNAME)" != "$DOMAIN" ]]; then
   say "restoring CNAME ($DOMAIN)"
   printf '%s\n' "$DOMAIN" > CNAME
   git add CNAME
