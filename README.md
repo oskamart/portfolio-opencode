@@ -66,24 +66,31 @@ python3 build/opencode-verify.py       # links, anchors, assets, metrics
 `deploy/opencode-publish.sh` measures, verifies, commits, pushes and checks
 the live site. It never force-pushes.
 
-The site is served by GitHub Pages from `oskamart/portfolio-opencode` with
-`CNAME` = `osys.one`.
+The site is served by GitHub Pages from `oskamart/portfolio-opencode`, with
+`CNAME` = `opencode.osys.one`.
 
-**The DNS change at the registrar is still outstanding** — `osys.one` currently
-points at an AWS Global Accelerator address that redirects to
-`osys.duckdns.org`, whose origin does not answer from the public internet.
-To finish, the registrar has to publish:
+**Why a subdomain and not the apex.** GitHub Pages allows exactly one custom
+domain per Pages site, and the shared kit's site already holds `osys.one`.
+Rather than fight over it, this site takes `opencode.osys.one` and the apex
+is left alone. If the apex should point here instead, the change is one
+record: move the Pages CNAME, and swap the two repositories' roles.
+
+**The one DNS record that is still missing.** `opencode.osys.one` has to
+resolve to GitHub Pages:
 
 | Name | Type | Value |
 |---|---|---|
-| `osys.one` | A | `185.199.108.153` |
-| `osys.one` | A | `185.199.109.153` |
-| `osys.one` | A | `185.199.110.153` |
-| `osys.one` | A | `185.199.111.153` |
-| `www.osys.one` | CNAME | `oskamart.github.io` |
+| `opencode.osys.one` | CNAME | `oskamart.github.io` |
 
-The Proton Mail MX and SPF records must not be touched. GitHub issues the
-certificate for the domain on its own once DNS resolves.
+Nothing else changes. The apex A records stay on the AWS Global Accelerator
+address, the Proton Mail MX and SPF records are not touched, and the shared
+kit keeps its own Pages site. `deploy/opencode-dns.py` makes exactly that
+one change through the GoDaddy API; `deploy/opencode-check.py` reports
+where the domain currently stands.
+
+GitHub issues the certificate for the subdomain on its own once the CNAME
+resolves — it is already serving the correct content for that host name, so
+only the registrar's record is outstanding.
 
 ## Layout
 
