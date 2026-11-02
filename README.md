@@ -42,26 +42,41 @@ The editorial decisions are mine too:
   operator's own code; the 128,687-line engine is measured, credited and
   excluded from the totals.
 
-## Identity, from the public profile
+## Identity, from the CV and the LinkedIn export
 
-Taken from the public LinkedIn profile
-(`linkedin.com/in/oskar-martensson-5bb73a114`), which is linked from the page:
+Taken from `~/Desktop/Resume_master.pdf` and the LinkedIn PDF export, both of
+which carry more than the public profile does. `build/opencode-pdf-text.py`
+extracts them — this environment has no PDF library and no pip, so the
+extractor is written from scratch and decodes Type0 / CID fonts through their
+ToUnicode CMaps.
 
-- **Oskar Martensson** — Stockholm, Sweden
-- **Strålsäkerhetsmyndigheten** — the Swedish Radiation Safety Authority
-- **Umeå universitet**, M.Sc. engineering physics, 2010–2017
+- **Oskar Mårtensson** — Solna and Stockholm, Sweden
+- **Thermohydraulics & Criticality Investigator**, Strålsäkerhetsmyndigheten,
+  January 2024 – ongoing. Nuclear reactor safety analysis; technical review of
+  international thermohydraulics research projects, mostly through the OECD
+  Nuclear Energy Agency; applied reactor physics at Uppsala University.
+- **Founder & Chief Engineer**, Minel, May 2020 – December 2023. Energy
+  decentralisation, local energy hardware, a lab to test it in, crypto trading
+  software, and a transformer-based AI for music generation.
+- **Computational Engineer**, CERN, February 2018 – April 2020.
+- **Technical Student**, CERN, February 2015 – January 2016.
+- **Umeå universitet**, M.Sc. engineering physics, 2010–2013 and 2014–2017,
+  specialised in modelling and fluid dynamics, with one year in the technical
+  student programme at CERN.
 - *Signal Analysis for Automated Diagnostic Applied to LHC Cryogenics*,
-  ICALEPCS / JACoW, October 2020 — with the cryogenic projects behind it:
-  automated signal analysis on the LHC cryogenic system (~8,000 signals a day),
-  the ATLAS helium refrigeration simulator, the cryo data analytics platform,
-  WinCC OA operator widgets, and the model-based-analysis infrastructure.
+  ICALEPCS / JACoW, October 2020 —
+  [doi:10.18429/JACoW-ICALEPCS2019-THCPL05](https://doi.org/10.18429/JACoW-ICALEPCS2019-THCPL05)
+- Master's thesis, LHCb upstream tracker enclosure — `diva2:901679`
 
-The cryogenics work is not decoration on the page: it is the same discipline —
+**On the spelling.** The public LinkedIn profile's JSON-LD strips the
+diacritic and reports "Martensson". The CV and the PDF export both write
+**Mårtensson**, with the ring. The page uses the spelling on the CV, which is
+the operator's own document.
+
+The cryogenic work is not decoration on the page: it is the same discipline —
 find the model, then make the signal readable — applied to a helium plant
-instead of a language model. It has its own section.
-
-Note the spelling: **Martensson**, no ring above the a. The page uses the
-spelling the profile uses.
+instead of a language model. It has its own section, and the career that
+produced it has one of its own.
 
 ## The numbers
 
@@ -147,6 +162,8 @@ assets/fonts/                   Spectral + IBM Plex Mono, self-hosted
 build/opencode-manifest.py      measures the trees → manifest.json
 build/opencode-verify.py        links, anchors, assets, accessible names, metrics
 build/opencode-shoot.py         headless screenshots
+build/opencode-pdf-text.py      PDF text extraction, no dependencies
+build/opencode-bundle.py        single self-contained HTML file
 build/opencode-cookies.py       AES-GCM for Chromium cookies, no dependencies
 serve.py                        local dev server
 deploy/                         production server, publish, DNS notes
