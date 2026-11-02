@@ -42,6 +42,27 @@ The editorial decisions are mine too:
   operator's own code; the 128,687-line engine is measured, credited and
   excluded from the totals.
 
+## Identity, from the public profile
+
+Taken from the public LinkedIn profile
+(`linkedin.com/in/oskar-martensson-5bb73a114`), which is linked from the page:
+
+- **Oskar Martensson** — Stockholm, Sweden
+- **Strålsäkerhetsmyndigheten** — the Swedish Radiation Safety Authority
+- **Umeå universitet**, M.Sc. engineering physics, 2010–2017
+- *Signal Analysis for Automated Diagnostic Applied to LHC Cryogenics*,
+  ICALEPCS / JACoW, October 2020 — with the cryogenic projects behind it:
+  automated signal analysis on the LHC cryogenic system (~8,000 signals a day),
+  the ATLAS helium refrigeration simulator, the cryo data analytics platform,
+  WinCC OA operator widgets, and the model-based-analysis infrastructure.
+
+The cryogenics work is not decoration on the page: it is the same discipline —
+find the model, then make the signal readable — applied to a helium plant
+instead of a language model. It has its own section.
+
+Note the spelling: **Martensson**, no ring above the a. The page uses the
+spelling the profile uses.
+
 ## The numbers
 
 Nothing on the page is typed. `build/opencode-manifest.py` measures:
@@ -72,6 +93,17 @@ There is a desktop launcher, **osys.one portfolio (opencode)**.
 python3 build/opencode-manifest.py     # re-measure
 python3 build/opencode-verify.py       # links, anchors, assets, metrics
 ```
+
+## A single file for the Desktop
+
+```bash
+python3 build/opencode-bundle.py
+```
+
+Writes a self-contained HTML file to `~/Desktop/portfolio/portfolio-opencode.html`:
+CSS and JavaScript inlined, fonts embedded as data URIs, and the manifest
+embedded in the page so the figures survive offline. It opens from `file://`
+with no server and no network request.
 
 ## Publishing
 

@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Oskar Mårtensson — hardware verification, inference, and the instruments around them</title>
-<meta name="description" content="Portfolio: a gateway repair layer that makes a verification engine usable against a real gateway, a C/CUDA inference server, the harness that measures models on hardware design, and the research and instruments around it. Every figure is measured from source.">
+<title>Oskar Martensson — hardware verification, inference, and the instruments around them</title>
+<meta name="description" content="Oskar Martensson, engineer at Strålsäkerhetsmyndigheten in Stockholm. A gateway repair layer that makes a verification engine usable, a C/CUDA inference server, the harness that measures models on hardware design — and ten years of signal analysis on the LHC cryogenic plant before that. Every figure is measured from source.">
 <meta name="color-scheme" content="light dark">
-<meta property="og:title" content="Oskar Mårtensson — engineering portfolio">
+<meta property="og:title" content="Oskar Martensson — engineering portfolio">
 <meta property="og:description" content="Agentic hardware verification, a local inference server, and the measurement harness that decides whether any of it works.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -17,11 +17,19 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Oskar Mårtensson",
+  "name": "Oskar Martensson",
   "alternateName": "osys.one",
   "url": "https://osys.one/",
-  "jobTitle": "Systems engineer",
+  "jobTitle": "Engineer",
+  "description": "I work with numbers, patterns and physics. Signal analysis on the LHC cryogenic plant, then gateway repair, evaluation harnesses and local inference for hardware verification.",
   "worksFor": { "@type": "Organization", "name": "Ardverium Labs" },
+  "affiliation": { "@type": "Organization", "name": "Strålsäkerhetsmyndigheten" },
+  "alumniOf": { "@type": "EducationalOrganization", "name": "Umeå universitet" },
+  "sameAs": [
+    "https://www.linkedin.com/in/oskar-martensson-5bb73a114",
+    "https://github.com/trishinraj/uvm_engine"
+  ],
+  "address": { "@type": "PostalAddress", "addressLocality": "Stockholm", "addressCountry": "SE" },
   "email": "oskar@osys.one"
 }
 </script>
@@ -34,13 +42,14 @@
 <header class="head">
   <div class="head__in">
     <a class="brand" href="#top">
-      <span class="brand__name">Oskar Mårtensson</span>
+      <span class="brand__name">Oskar Martensson</span>
       <span class="brand__sep" aria-hidden="true">/</span>
       <span class="brand__where">osys.one</span>
     </a>
     <nav class="head__nav" aria-label="Sections">
       <a href="#systems">Systems</a>
       <a href="#evidence">Evidence</a>
+      <a href="#cryogenics">Cryogenics</a>
       <a href="#older">Earlier work</a>
       <a href="#method">Method</a>
     </nav>
@@ -53,6 +62,7 @@
 <div class="mobnav" id="mobnav" hidden>
   <a href="#systems">Systems</a>
   <a href="#evidence">Evidence</a>
+  <a href="#cryogenics">Cryogenics</a>
   <a href="#older">Earlier work</a>
   <a href="#method">Method</a>
 </div>
@@ -62,7 +72,7 @@
 <!-- ── hero ───────────────────────────────────────────────────────────────── -->
 <section class="hero">
   <div class="hero__in">
-    <p class="hero__role">Ardverium Labs · Origo · Oden</p>
+    <p class="hero__role">Strålsäkerhetsmyndigheten · Ardverium Labs · Stockholm</p>
 
     <h1 class="hero__h1">
       I build the machinery that decides
@@ -73,7 +83,8 @@
       A gateway repair layer that makes a verification engine usable against a
       real gateway. A harness that holds models to a benchmark they cannot argue
       with. An inference server written in C that runs those models on the same
-      silicon. And the instruments, papers and notebooks that fill in around them.
+      silicon. Before all of it, a decade of signal analysis on a liquid helium
+      plant — where availability is measured in hours, not percent.
     </p>
 
     <dl class="hero__stats">
@@ -288,6 +299,90 @@
     </p>
   </aside>
 
+</section>
+
+<!-- ── cryogenics ────────────────────────────────────────────────────────── -->
+<section class="sect" id="cryogenics">
+  <div class="sect__head">
+    <h2 class="sect__title">Before the software</h2>
+    <p class="sect__note">
+      Ten years of signal analysis on the LHC's cryogenic plant, where a
+      helium refrigeration system feeds superconducting magnets and RF cavities.
+      In 2018 it cost the LHC 172 hours of downtime in a 5,760-hour year, and
+      recovery acts as a time amplifier — so the work was to see degradation
+      before it became an outage.
+    </p>
+  </div>
+
+  <div class="older">
+    <article class="old">
+      <h3 class="old__t">Automated signal analysis</h3>
+      <p class="old__b">
+        A generic analysis system for signal anomalies, applied to the cryogenic
+        system to keep it available and performing. Roughly <b>8,000 signals
+        analysed daily</b>. Presented at ICALEPCS 2019 and published in JACoW.
+      </p>
+      <p class="old__m">
+        Signal Analysis for Automated Diagnostic Applied to LHC Cryogenics —
+        ICALEPCS / JACoW, October 2020.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">ATLAS helium refrigeration simulator</h3>
+      <p class="old__b">
+        Helped build a simulator of the ATLAS experiment's helium refrigeration
+        system, for training new cryogenic operators.
+      </p>
+      <p class="old__m">
+        November 2019 – April 2020.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">Cryo data analytics platform</h3>
+      <p class="old__b">
+        Built and maintained the site where analyses of the LHC's cryogenic
+        system are set up and presented.
+      </p>
+      <p class="old__m">
+        May 2018 – April 2020.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">Operator-facing instrumentation</h3>
+      <p class="old__b">
+        Widgets for WinCC OA showing derived quantities — refrigeration power,
+        liquefaction efficiency — used by the operators of the cryogenic system.
+      </p>
+      <p class="old__m">
+        August 2018 – September 2019.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">Model-based analysis</h3>
+      <p class="old__b">
+        Set up the infrastructure for running model-based analysis automatically
+        against the cryogenic system.
+      </p>
+      <p class="old__m">
+        February – August 2019.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">The background that shows up later</h3>
+      <p class="old__b">
+        M.Sc. in engineering physics from Umeå universitet, 2010–2017, in
+        quantum and statistical physics, helium refrigeration, numerical methods
+        for partial differential equations, and scientific computing — the
+        same instinct as the work above: find the model, then make the signal
+        readable.
+      </p>
+    </article>
+  </div>
 </section>
 
 <!-- ── evidence ───────────────────────────────────────────────────────────── -->
@@ -558,6 +653,16 @@
         deduplication, and this page reads the file index of that backup.
       </p>
     </div>
+    <div class="meth">
+      <h3 class="meth__t">Regulated industry, all the way down</h3>
+      <p class="meth__b">
+        The day job is at the Swedish Radiation Safety Authority, and the
+        benchmark work carries the same habit: if a number is published, it is
+        reproducible, and if a result is wrong, it is retracted in the open.
+        Some of the code here exists because the rules of a nuclear regulator
+        are a better standard than most engineering teams hold themselves to.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -572,10 +677,11 @@
     </p>
     <p class="end__actions">
       <a class="btn btn--key" href="mailto:oskar@osys.one">oskar@osys.one</a>
+      <a class="btn" href="https://www.linkedin.com/in/oskar-martensson-5bb73a114" rel="noopener">LinkedIn</a>
       <a class="btn" href="https://github.com/trishinraj/uvm_engine" rel="noopener">UVMStack on GitHub</a>
     </p>
     <ul class="end__meta">
-      <li>Remote — Stockholm, Sweden</li>
+      <li>Stockholm, Sweden — <b>Strålsäkerhetsmyndigheten</b> by day, Ardverium Labs by night</li>
       <li>Origo: desktop, RTX 4080 SUPER. Oden: KVM guest, GPU passthrough.</li>
       <li>This page is regenerated by <code>build/opencode-manifest.py</code>.</li>
     </ul>
