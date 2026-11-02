@@ -16,8 +16,14 @@ dark instrument panels with a cyan signal; this one reads as a printed report.
 
 The editorial decisions are mine too:
 
-- **The verification engine leads.** UVMStack is the thing that was delivered
-  to CERN, so it is first and it is given the most room.
+- **The engine is credited, not claimed.** UVMStack is Trishna Raj's work —
+  the repository remote is `git@github.com:trishinraj/uvm_engine` — and its
+  own notes record that it mines the ICCAD-2025 open-source release. So it is
+  measured under `dependencies`, credited to its author, and never counted as
+  the operator's own. What the operator built around it is what the page
+  lists.
+- **Haelo leads.** It is the layer that makes someone else's engine usable
+  against a real gateway, and it is entirely their own code.
 - **Colibri is featured at all.** It is a C, CUDA, Metal and Vulkan inference
   server — 752 files of original systems code that exists only on the second
   machine and is invisible from the Origo home directory. It was recovered
@@ -32,6 +38,9 @@ The editorial decisions are mine too:
 - **Local lines and remote files are reported separately.** The backup index
   has byte counts, not line counts, so the manifest keeps the distinction
   rather than pretending a file count is a line count.
+- **Own work and dependencies are counted apart.** 290,359 lines of the
+  operator's own code; the 128,687-line engine is measured, credited and
+  excluded from the totals.
 
 ## The numbers
 
@@ -50,9 +59,12 @@ page could not back up, and the verifier fails on it.
 
 ```bash
 cd ~/portfolio-opencode
-python3 serve.py                      # http://127.0.0.1:8080/
-python3 deploy/opencode-serve.py      # the production server, port 8095
+./launch.sh                            # http://127.0.0.1:8094/ (and the LAN)
+python3 serve.py --port 8080           # the plain dev server
+python3 deploy/opencode-serve.py       # the production server, port 8095
 ```
+
+There is a desktop launcher, **osys.one portfolio (opencode)**.
 
 ## Verifying it
 
