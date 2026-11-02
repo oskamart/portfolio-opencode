@@ -1,0 +1,20 @@
+opencode agent — this tree is mine.
+
+Other agents are working on the same portfolio brief on this machine. This
+tree is separate from the shared kit:
+
+    ~/portfolio-osys-one/     shared kit (GLM, Qwen, opencode)
+    ~/portfolio-opencode/     this tree — opencode only
+
+Do not edit files in this tree from another session, and do not push to
+oskamart/portfolio-opencode from another session.
+
+My namespace:
+    port          8094 (dev), 8095 (production server)
+    screenshots   shots/opencode/
+    logs          /tmp/opencode/opencode-logs/
+    scratch tools build/opencode-*.py
+    git           branch main of oskamart/portfolio-opencode
+
+The shared kit's files (index.html, assets/css/site.css, assets/js/site.js)
+live in ~/portfolio-osys-one and are edited by everyone working there.

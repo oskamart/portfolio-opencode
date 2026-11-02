@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oskar Mårtensson — hardware verification, inference, and the instruments around them</title>
+<meta name="description" content="Portfolio: an agentic UVM verification engine delivered to CERN, a C/CUDA inference server, the harness that measures models on hardware design, and the graphics and research work beside it. Every figure is measured from source.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Oskar Mårtensson — engineering portfolio">
+<meta property="og:description" content="Agentic hardware verification, a local inference server, and the measurement harness that decides whether any of it works.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/spectral-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Oskar Mårtensson",
+  "alternateName": "osys.one",
+  "url": "https://osys.one/",
+  "jobTitle": "Systems engineer",
+  "worksFor": { "@type": "Organization", "name": "Ardverium Labs" },
+  "email": "oskar@osys.one"
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#systems">Skip to the work</a>
+
+<!-- ── header ─────────────────────────────────────────────────────────────── -->
+<header class="head">
+  <div class="head__in">
+    <a class="brand" href="#top">
+      <span class="brand__name">Oskar Mårtensson</span>
+      <span class="brand__sep" aria-hidden="true">/</span>
+      <span class="brand__where">osys.one</span>
+    </a>
+    <nav class="head__nav" aria-label="Sections">
+      <a href="#systems">Systems</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#older">Earlier work</a>
+      <a href="#method">Method</a>
+    </nav>
+    <button class="head__menu" type="button" aria-expanded="false" aria-controls="mobnav">
+      <span aria-hidden="true">Menu</span>
+    </button>
+  </div>
+</header>
+
+<div class="mobnav" id="mobnav" hidden>
+  <a href="#systems">Systems</a>
+  <a href="#evidence">Evidence</a>
+  <a href="#older">Earlier work</a>
+  <a href="#method">Method</a>
+</div>
+
+<main id="top">
+
+<!-- ── hero ───────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero__in">
+    <p class="hero__role">Ardverium Labs · Origo · Oden</p>
+
+    <h1 class="hero__h1">
+      I build the machinery that decides
+      whether the <em>next</em> thing works.
+    </h1>
+
+    <p class="hero__lede">
+      A verification engine that turns RTL into signed-off test plans and
+      testbenches. An inference server written in C that runs the models
+      locally. A harness that holds those models to a benchmark they cannot
+      argue with. And the instruments, papers and notebooks that fill in
+      around them.
+    </p>
+
+    <dl class="hero__stats">
+      <div>
+        <dt>Lines written, this repository</dt>
+        <dd data-metric="totals.local_code_loc">—</dd>
+      </div>
+      <div>
+        <dt>Files across both machines</dt>
+        <dd data-metric="totals.files">—</dd>
+      </div>
+      <div>
+        <dt>Hardware benchmark items</dt>
+        <dd>845</dd>
+      </div>
+      <div>
+        <dt>Shared AA engine, verified</dt>
+        <dd><span data-metric="taa_core.loc">—</span> LOC</dd>
+      </div>
+    </dl>
+
+    <p class="hero__stamp">
+      <span class="hero__dot" aria-hidden="true"></span>
+      Measured from source on <span data-metric="generated">—</span>
+      <span class="visually-hidden" role="status" aria-live="polite" id="metrics-status"></span>
+    </p>
+  </div>
+
+  <figure class="hero__fig">
+    <canvas id="scope" aria-hidden="true"></canvas>
+    <figcaption class="visually-hidden">
+      A live oscilloscope trace, drawn from the page's own measured figures.
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ── systems ────────────────────────────────────────────────────────────── -->
+<section class="sect" id="systems">
+  <div class="sect__head">
+    <h2 class="sect__title">The systems</h2>
+    <p class="sect__note">
+      Four that carry the weight. Each was measured, not estimated, and the
+      numbers below are the ones the build reports.
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <article class="card card--lead">
+      <header class="card__head">
+        <p class="card__kind">Agentic hardware verification</p>
+        <h3 class="card__title">UVMStack <span class="card__alias">/ AVA</span></h3>
+        <p class="card__sum">
+          An agentic system that reads RTL and design intent and produces a
+          reviewable UVM workflow — test plan, coverage plan, testbench — with
+          the human sign-off gates enforced as exit codes rather than good
+          intentions. Delivered to CERN as a desktop application with the
+          engine behind it.
+        </p>
+      </header>
+
+      <div class="card__grid">
+        <dl class="spec">
+          <div><dt>Written</dt><dd><span data-metric="systems.uvmstack.code_loc">—</span> LOC</dd></div>
+          <div><dt>Files</dt><dd><span data-metric="systems.uvmstack.files">—</span></dd></div>
+          <div><dt>Commits</dt><dd><span data-metric="systems.uvmstack.commits">—</span></dd></div>
+          <div><dt>Stack</dt><dd>Python, TypeScript, SystemVerilog, Electron</dd></div>
+        </dl>
+        <div class="card__body">
+          <h4>What makes it hold up</h4>
+          <ul>
+            <li><b>Reproducibility is the product.</b> Every run emits a commit-ready bundle:
+              the generated testbench, the plan workbook, a trajectory of every model and
+              tool call with hashes, and a manifest pinning model version, skill-pack SHA,
+              simulator version and seed, RTL hash, spec hash, plan hash and final coverage.
+            </li>
+            <li><b>Three pluggable layers.</b> Agent, model and simulation backend are each a
+              Python <code>Protocol</code> with several implementations, pinned in the run
+              manifest so a replay reconstructs the exact stack that produced a result.</li>
+            <li><b>Failure is loud.</b> No silent degradation. Any loop over paid calls
+              persists each unit the moment it completes, so a crash costs the in-flight
+              unit and nothing else.</li>
+            <li><b>Two testbench dialects</b> — UVM and plain SystemVerilog — share one
+              input-preparation path, so the two styles cannot disagree about ports, clock
+              roles or plan content.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <header class="card__head">
+        <p class="card__kind">Local inference</p>
+        <h3 class="card__title">Colibri</h3>
+        <p class="card__sum">
+          An inference server written from the ground up in C, with CUDA, Metal and
+          Vulkan backends behind one interface — so the models that judge the
+          verification engine can run on the machine next to it, on the same silicon,
+          with nothing phoning home.
+        </p>
+      </header>
+      <div class="card__grid">
+        <dl class="spec">
+          <div><dt>Files</dt><dd><span data-metric="systems.oden_colibri.files">—</span></dd></div>
+          <div><dt>Vulkan build</dt><dd><span data-metric="systems.oden_colibri_vk.files">—</span> files</dd></div>
+          <div><dt>Abliteration tooling</dt><dd><span data-metric="systems.oden_colibri_ab.files">—</span> files</dd></div>
+          <div><dt>Written in</dt><dd>C, CUDA, Metal, Python</dd></div>
+        </dl>
+        <div class="card__body">
+          <h4>Why it exists</h4>
+          <ul>
+            <li>The evaluation harness needs a model it controls end to end: same build,
+              same quantisation, same context length, no API in the loop. A measured result
+              is worth nothing if the serving stack is a moving target.</li>
+            <li>One core, three backends — CUDA for the discrete workstation GPU, Metal for
+              the laptop, Vulkan for the card that has no CUDA path at all.</li>
+            <li>It reports its own internals: a per-turn breakdown of attention, expert
+              matmul, expert disk and head time, which is what makes prefill-versus-decode
+              a measurement rather than a guess.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <header class="card__head">
+        <p class="card__kind">Measurement harness</p>
+        <h3 class="card__title">Oden Flow</h3>
+        <p class="card__sum">
+          The runtime that decides whether a model can actually do the job. A frozen
+          benchmark tree, a SHA-256 manifest checked before every stage, and a gate loop
+          that will not let a model skip a step.
+        </p>
+      </header>
+      <div class="card__grid">
+        <dl class="spec">
+          <div><dt>Written</dt><dd><span data-metric="systems.odenflow.code_loc">—</span> LOC</dd></div>
+          <div><dt>Commits</dt><dd><span data-metric="systems.odenflow.commits">—</span></dd></div>
+          <div><dt>Suites</dt><dd>8 benchmark suites · 3 task sets</dd></div>
+          <div><dt>Runtime tree</dt><dd><span data-metric="systems.oden_hwbench_runtime.files">—</span> files</dd></div>
+        </dl>
+        <div class="card__body">
+          <h4>The rules it enforces</h4>
+          <ul>
+            <li><b>Nothing is patched.</b> The engine and the benchmark tree are deployed
+              verbatim. A SHA-256 manifest is taken at deploy time and verified before every
+              stage; a difference is a refusal, not a warning.</li>
+            <li><b>Same items, same conditions.</b> One canonical order frozen for the whole
+              campaign, lockstep blocks of ten, identical prompts, temperature 0, and
+              context-exceeded counted as an attempted failure so the denominator never shifts.</li>
+            <li><b>Stop at the first bad step.</b> A failed step ends that model's round — the
+              remainder will not build on a bad base. Steps that passed are kept and never redone.</li>
+            <li><b>Infrastructure failures are not model failures.</b> Calls the adapter marked
+              as infrastructure faults are re-run rather than charged to the model.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <header class="card__head">
+        <p class="card__kind">Gateway repair</p>
+        <h3 class="card__title">Haelo</h3>
+        <p class="card__sum">
+          A small OpenAI-compatible proxy that sits between the engine and any
+          OpenAI-compatible gateway. The engine does not change — it talks to the
+          proxy exactly as it would talk to the gateway.
+        </p>
+      </header>
+      <div class="card__grid">
+        <dl class="spec">
+          <div><dt>Written</dt><dd><span data-metric="systems.haelo.code_loc">—</span> LOC</dd></div>
+          <div><dt>Dependencies</dt><dd>none — standard library only</dd></div>
+          <div><dt>Licence</dt><dd>Proprietary, trial</dd></div>
+          <div><dt>Measured</dt><dd>9 of 9 designs repaired</dd></div>
+        </dl>
+        <div class="card__body">
+          <h4>What it actually does</h4>
+          <ul>
+            <li>Caps thinking per request and fits each request to the model's real context
+              window — the failure that cost the uncapped run <em>an answer entirely</em>.</li>
+            <li>Repairs a schema-invalid answer by re-sending the failed turn as a
+              <em>continuation</em> carrying the validation errors, rather than restarting.</li>
+            <li>Keeps a long call alive past the client's silence timeout, and runs the
+              engine's own hard checks before answering.</li>
+          </ul>
+          <p class="card__aside">
+            On the same gateway, the bare engine took <b>8 of 9</b> designs through plan and
+            coverage; with Haelo in front of it, <b>9 of 9</b>. The proxy changed no engine
+            code. It changed the request.
+          </p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ── evidence ───────────────────────────────────────────────────────────── -->
+<section class="sect sect--alt" id="evidence">
+  <div class="sect__head">
+    <h2 class="sect__title">Evidence</h2>
+    <p class="sect__note">
+      Benchmarks with the method published, the ceilings stated, and the failures
+      that came with them.
+    </p>
+  </div>
+
+  <div class="figs">
+
+    <figure class="fig">
+      <figcaption class="fig__cap">
+        <span class="fig__name">Hardware benchmark, suite by suite</span>
+        <span class="fig__sub">Leading local model · 845 scored items · 8 suites</span>
+      </figcaption>
+      <table class="tbl">
+        <thead>
+          <tr><th scope="col">Suite</th><th scope="col">Items</th><th scope="col">Pass</th><th scope="col">Rate</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">CVDP comprehension</th><td>63</td><td>46</td><td><b>73.0%</b></td></tr>
+          <tr><th scope="row">RTLLM</th><td>50</td><td>36</td><td><b>72.0%</b></td></tr>
+          <tr><th scope="row">LogikBench</th><td>149</td><td>99</td><td><b>66.4%</b></td></tr>
+          <tr><th scope="row">CVDP debug/modify</th><td>90</td><td>44</td><td><b>48.9%</b></td></tr>
+          <tr><th scope="row">ChipBench debug</th><td>178</td><td>83</td><td><b>46.6%</b></td></tr>
+          <tr><th scope="row">CVDP area / ChipBench gen</th><td>72</td><td>33</td><td><b>45.8%</b></td></tr>
+          <tr><th scope="row">CVDP spec&rarr;RTL</th><td>172</td><td>77</td><td><b>44.8%</b></td></tr>
+          <tr><th scope="row">ArchXBench</th><td>71</td><td>30</td><td><b>42.3%</b></td></tr>
+        </tbody>
+      </table>
+      <p class="fig__foot">
+        448 of 845 items — <b>53.0% micro, 55.0% macro</b>. A seven-model oracle reaches
+        68.8%, so <b>31% of items are solved by no model at all</b>, which bounds what any
+        of these numbers can mean. Sixty CVDP comprehension rows still wait on a judge.
+      </p>
+    </figure>
+
+    <figure class="fig">
+      <figcaption class="fig__cap">
+        <span class="fig__name">What the ablation actually showed</span>
+        <span class="fig__sub">Reproducibility check · 27 duplicate groups</span>
+      </figcaption>
+      <table class="tbl">
+        <thead>
+          <tr><th scope="col">Claim</th><th scope="col">Result</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Abliteration changes capability</th><td>p = 0.31, p = 0.87 — <b>no measurable effect</b></td></tr>
+          <tr><th scope="row">Strata repeats at temp 0</th><td>23 of 27 groups diverged — <b>it does not</b></td></tr>
+          <tr><th scope="row">llama.cpp, ‑np 1, no cache</th><td>0 of 27 diverged — <b>byte-identical</b></td></tr>
+          <tr><th scope="row">Capped rows vs uncapped</th><td>45% vs 92% pass — <b>the cap was the bottleneck</b></td></tr>
+        </tbody>
+      </table>
+      <p class="fig__foot">
+        The finding that mattered most was the one that made a benchmark board
+        <em>invalid</em>: at 4,096 tokens the leading model was truncated on 83% of rows,
+        so its score was measuring the harness, not the model.
+      </p>
+    </figure>
+
+    <figure class="fig">
+      <figcaption class="fig__cap">
+        <span class="fig__name">Repair proxy, end to end</span>
+        <span class="fig__sub">AssertLLM-mini · 9 designs · same gateway</span>
+      </figcaption>
+      <table class="tbl">
+        <thead>
+          <tr><th scope="col">Configuration</th><th scope="col">Passing</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Engine + Haelo, Qwen3.8-27B</th><td><b>9 / 9</b></td></tr>
+          <tr><th scope="row">Engine + Haelo, gpt-oss-20b</th><td><b>9 / 9</b></td></tr>
+          <tr><th scope="row">Bare engine, gpt-oss-20b</th><td>8 / 9</td></tr>
+          <tr><th scope="row">Bare engine, defaults only</th><td>1 of 4 steps</td></tr>
+          <tr><th scope="row">Uncapped thinking on plan steps</th><td>no answer after ~40 min</td></tr>
+        </tbody>
+      </table>
+      <p class="fig__foot">
+        The proxy changed no engine code. It changed the request: cap the thinking,
+        keep the call alive, repair the schema, continue the answer.
+      </p>
+    </figure>
+
+    <figure class="fig">
+      <figcaption class="fig__cap">
+        <span class="fig__name">Temporal AA, on the slowest supported GPU</span>
+        <span class="fig__sub">GeForce GT 730 · 1924 × 1250 · HD</span>
+      </figcaption>
+      <table class="tbl">
+        <thead>
+          <tr><th scope="col">Measure</th><th scope="col">Before</th><th scope="col">After</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Frame time</th><td>249.7 ms</td><td><b>26.9 ms</b></td></tr>
+          <tr><th scope="row">Frame rate</th><td>3.5 fps</td><td><b>28.2 fps</b></td></tr>
+          <tr><th scope="row">Internal scale</th><td>1.0</td><td><b>0.288</b></td></tr>
+        </tbody>
+      </table>
+      <p class="fig__foot">
+        One shared engine, <span data-metric="taa_core.loc">—</span> LOC, verified
+        byte-identical across all <span data-metric="taa_core.designs">4</span> designs by MD5.
+        The target was never a fast GPU — it was a readable page on whatever the reader has.
+      </p>
+    </figure>
+
+  </div>
+</section>
+
+<!-- ── earlier work ───────────────────────────────────────────────────────── -->
+<section class="sect" id="older">
+  <div class="sect__head">
+    <h2 class="sect__title">Earlier work</h2>
+    <p class="sect__note">
+      Recovered from the backup of the second machine, so the counts come from a
+      file index rather than a checkout. These were built before the current
+      stack and they still run.
+    </p>
+  </div>
+
+  <div class="older">
+
+    <article class="old">
+      <h3 class="old__t">Oden IDE</h3>
+      <p class="old__b">
+        The web IDE the engine runs inside: sixteen domains of server modules, a
+        per-area permission model, and an agent shell that executes inside a
+        bubblewrap sandbox with secrets masked and protected paths read-only.
+        <span data-metric="systems.oden_oden_ide_dev.files">—</span> development
+        files, <span data-metric="systems.oden_oden_ide.files">—</span> packaged.
+      </p>
+      <p class="old__m">
+        One password, server-side sessions, a CSRF token per session, a same-origin
+        check on every change, and an audit log of every change. Five wrong passwords
+        lock the client address for thirty seconds, and each further one doubles it.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">Oquip</h3>
+      <p class="old__b">
+        The packaging layer that carries the engine, the proxy and the graphics
+        work into one deployable runtime:
+        <span data-metric="systems.oden_oquip2.files">—</span> files, with the
+        engine sources, the six Ardverium instruments and the proxy side by side.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">Verification methods</h3>
+      <p class="old__b">
+        A read-only library of the field, kept so that the engine's behaviour has a
+        reference rather than a memory: UVM core, cocotb and pyuvm, RISC-V DV, and
+        a SWE-bench corpus —
+        <span data-metric="systems.oden_verification_methods.files">—</span> files,
+        pinned by commit with a SHA-256 manifest over the whole tree.
+      </p>
+      <p class="old__m">
+        Alongside it, five handbooks that are executable rather than descriptive:
+        lint and compile SystemVerilog with Verilator, Verible, slang, Icarus, sv2v
+        and Yosys; drive a cocotb and a pyuvm testbench; and prove an assertion
+        with Yosys. Each one records the pitfall it already hit, so the next person
+        does not.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">Self-improvement library</h3>
+      <p class="old__b">
+        Darwin Gödel Machine, DSPy, GEPA, OpenEvolve and ShinkaEvolve —
+        <span data-metric="systems.oden_self_improvement.files">—</span> files —
+        held as the reference set for evolving the repair proxy's own skills.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">Papers and handbooks</h3>
+      <p class="old__b">
+        <span data-metric="systems.oden_papers.files">—</span> papers kept as PDF
+        and plain text side by side, because reading cost is prefill cost and the
+        index says so.
+      </p>
+    </article>
+
+    <article class="old">
+      <h3 class="old__t">Physics and engineering notebooks</h3>
+      <p class="old__b">
+        <span data-metric="systems.phisix.code_loc">—</span> lines of research
+        notes on Clifford algebra and G2 structure; a district-heat and
+        thermoelectric study whose optimised geometry returns
+        <b>−2.37 W</b> for 10 kW of heat; and a Kilopower conversion study whose
+        notebook says in its own docstring that no reactor core, fuel, neutronics,
+        shielding or transient is modelled.
+      </p>
+      <p class="old__m">
+        The mass-spectrum analysis reproduces the Koide relation to 1.4 × 10<sup>−6</sup>
+        and, in the same voice, reports the fixed-phase muon prediction as
+        451.7&sigma; away.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ── method ─────────────────────────────────────────────────────────────── -->
+<section class="sect sect--alt" id="method">
+  <div class="sect__head">
+    <h2 class="sect__title">Method</h2>
+    <p class="sect__note">
+      The constraints that produced the work, stated as constraints.
+    </p>
+  </div>
+
+  <div class="method">
+    <div class="meth">
+      <h3 class="meth__t">Nothing on this page is typed</h3>
+      <p class="meth__b">
+        Every figure is produced by a script that walks the real trees — or, for
+        the second machine, the file index its backup keeps — and writes the
+        result to a manifest the page reads at load. The number and the artefact
+        cannot disagree, because one produces the other.
+      </p>
+    </div>
+    <div class="meth">
+      <h3 class="meth__t">One append-only decision log</h3>
+      <p class="meth__b">
+        2,683 entries recording what was decided, why, and who signed it off —
+        from the rule that the benchmark tree is never patched, to the
+        measurement that thread count was costing one model 97% of its
+        throughput. It is the closest thing here to a primary source.
+      </p>
+    </div>
+    <div class="meth">
+      <h3 class="meth__t">Negative results are results</h3>
+      <p class="meth__b">
+        A thermoelectric geometry that does not pay. A benchmark board that was
+        invalid. A model that does not repeat at temperature zero. Each is
+        reported with the same weight as the wins, because a page that only
+        shows wins is not a measurement.
+      </p>
+    </div>
+    <div class="meth">
+      <h3 class="meth__t">Review in writing, separately</h3>
+      <p class="meth__b">
+        Critique documents written by a separate reviewer, verdicts issued as
+        DONE / PARTLY / NOT DONE, and the fixes applied in the open. Two design
+        reviews here each end with a full second document written against the
+        first.
+      </p>
+    </div>
+    <div class="meth">
+      <h3 class="meth__t">Licence hygiene</h3>
+      <p class="meth__b">
+        SPDX allow-lists on training data and dependencies, explicit exclusions
+        for non-commercial and copyleft corpora, notices shipped with every
+        bundle, and self-hosted fonts so the page makes no third-party request.
+      </p>
+    </div>
+    <div class="meth">
+      <h3 class="meth__t">Two machines, one record</h3>
+      <p class="meth__b">
+        Origo is the desktop: an RTX 4080 SUPER, the source trees, the instruments.
+        Oden is a KVM guest with the GPU passed through, and it is where the
+        benchmarks ran. Both are backed up to Proton Drive with content-defined
+        deduplication, and this page reads the file index of that backup.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── contact ────────────────────────────────────────────────────────────── -->
+<section class="end" id="contact">
+  <div class="end__in">
+    <h2 class="end__t">Tell me what you need measured.</h2>
+    <p class="end__b">
+      Currently delivering UVMStack and Haelo into an evaluation programme, with a
+      public web IDE and a hardware benchmark behind it.
+    </p>
+    <p class="end__actions">
+      <a class="btn btn--key" href="mailto:oskar@osys.one">oskar@osys.one</a>
+      <a class="btn" href="https://github.com/trishinraj/uvm_engine" rel="noopener">UVMStack on GitHub</a>
+    </p>
+    <ul class="end__meta">
+      <li>Remote — Stockholm, Sweden</li>
+      <li>Origo: desktop, RTX 4080 SUPER. Oden: KVM guest, GPU passthrough.</li>
+      <li>This page is regenerated by <code>build/opencode-manifest.py</code>.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__in">
+    <p class="foot__m">osys<span class="foot__dot">.</span>one</p>
+    <p class="foot__n">
+      Spectral and IBM Plex Mono, self-hosted under the SIL Open Font License.
+      No third-party requests.
+    </p>
+    <p class="foot__n foot__n--dim" id="foot-stamp">—</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+{
+  "generated": "2026-11-02T12:27:28+00:00",
+  "generator": "build/opencode-manifest.py",
+  "agent": "opencode",
+  "backup_index": "/home/o/.local/share/origo-backup/cache/entries/20261024T161452607198Z-b49d2c4058c6.sqlite",
+  "systems": {
+    "uvmstack": {
+      "files": 752,
+      "code_loc": 128687,
+      "doc_loc": 22546,
+      "bytes": 6844512,
+      "commits": 303,
+      "source": "local",
+      "label": "UVMStack (AVA)"
+    },
+    "haelo": {
+      "files": 16,
+      "code_loc": 7503,
+      "doc_loc": 477,
+      "bytes": 427245,
+      "commits": 0,
+      "source": "local",
+      "label": "Haelo"
+    },
+    "odenflow": {
+      "files": 264,
+      "code_loc": 99775,
+      "doc_loc": 4372,
+      "bytes": 5579952,
+      "commits": 122,
+      "source": "local",
+      "label": "Oden Flow"
+    },
+    "ardverium": {
+      "files": 88,
+      "code_loc": 30525,
+      "doc_loc": 8018,
+      "bytes": 2527500,
+      "commits": 0,
+      "source": "local",
+      "label": "Ardverium"
+    },
+    "lorapilot": {
+      "files": 109,
+      "code_loc": 34813,
+      "doc_loc": 0,
+      "bytes": 1666889,
+      "commits": 7,
+      "source": "local",
+      "label": "LoRA pilot"
+    },
+    "lorapilot_tests": {
+      "files": 91,
+      "code_loc": 15240,
+      "doc_loc": 0,
+      "bytes": 736306,
+      "commits": 0,
+      "source": "local",
+      "label": "LoRA pilot tests"
+    },
+    "origobackup": {
+      "files": 20,
+      "code_loc": 4459,
+      "doc_loc": 335,
+      "bytes": 314817,
+      "commits": 0,
+      "source": "local",
+      "label": "Origo Backup"
+    },
+    "phisix": {
+      "files": 268,
+      "code_loc": 54738,
+      "doc_loc": 36256,
+      "bytes": 11268243,
+      "commits": 0,
+      "source": "local",
+      "label": "phi6 / UniPhy"
+    },
+    "ssmfs": {
+      "files": 64,
+      "code_loc": 684,
+      "doc_loc": 12137,
+      "bytes": 1360798,
+      "commits": 0,
+      "source": "local",
+      "label": "SSMFS translation"
+    },
+    "kpow": {
+      "files": 2,
+      "code_loc": 312,
+      "doc_loc": 5,
+      "bytes": 19653,
+      "commits": 0,
+      "source": "local",
+      "label": "K-Pow"
+    },
+    "heat": {
+      "files": 2,
+      "code_loc": 361,
+      "doc_loc": 8,
+      "bytes": 19626,
+      "commits": 0,
+      "source": "local",
+      "label": "District heating"
+    },
+    "oden_colibri": {
+      "files": 752,
+      "code_files": 662,
+      "doc_files": 90,
+      "bytes": 12936799,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Colibri inference server"
+    },
+    "oden_colibri_vk": {
+      "files": 620,
+      "code_files": 601,
+      "doc_files": 19,
+      "bytes": 11049589,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Colibri (Vulkan)"
+    },
+    "oden_colibri_ab": {
+      "files": 1374,
+      "code_files": 1265,
+      "doc_files": 109,
+      "bytes": 24031824,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Colibri (abliteration)"
+    },
+    "oden_oden_ide": {
+      "files": 169,
+      "code_files": 152,
+      "doc_files": 17,
+      "bytes": 2410602,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Oden IDE"
+    },
+    "oden_oden_ide_dev": {
+      "files": 814,
+      "code_files": 729,
+      "doc_files": 85,
+      "bytes": 11095573,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Oden IDE (dev)"
+    },
+    "oden_oden_model_hub": {
+      "files": 29,
+      "code_files": 27,
+      "doc_files": 2,
+      "bytes": 809381,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Model hub"
+    },
+    "oden_oquip2": {
+      "files": 7543,
+      "code_files": 7190,
+      "doc_files": 353,
+      "bytes": 69678046,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Oquip"
+    },
+    "oden_uvm": {
+      "files": 12024,
+      "code_files": 11484,
+      "doc_files": 540,
+      "bytes": 122442245,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "UVM trees"
+    },
+    "oden_runtime": {
+      "files": 76,
+      "code_files": 57,
+      "doc_files": 19,
+      "bytes": 261098,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Model runtime"
+    },
+    "oden_hwbench_runtime": {
+      "files": 1828,
+      "code_files": 1744,
+      "doc_files": 84,
+      "bytes": 38062029,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "HW-bench runtime"
+    },
+    "oden_translations": {
+      "files": 89,
+      "code_files": 3,
+      "doc_files": 86,
+      "bytes": 6093484,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Translations"
+    },
+    "oden_verification_methods": {
+      "files": 1754,
+      "code_files": 1624,
+      "doc_files": 130,
+      "bytes": 13906425,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Verification methods"
+    },
+    "oden_self_improvement": {
+      "files": 2738,
+      "code_files": 1710,
+      "doc_files": 1028,
+      "bytes": 42594616,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Self-improvement"
+    },
+    "oden_papers": {
+      "files": 53,
+      "code_files": 0,
+      "doc_files": 53,
+      "bytes": 5748416,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Papers"
+    },
+    "oden_handbooks": {
+      "files": 8,
+      "code_files": 4,
+      "doc_files": 4,
+      "bytes": 12421,
+      "commits": 0,
+      "source": "oden-via-backup",
+      "label": "Handbooks"
+    }
+  },
+  "totals": {
+    "local_code_loc": 377097,
+    "local_files": 1676,
+    "remote_files": 29871,
+    "files": 31547,
+    "commits": 432,
+    "bytes": 391898089
+  },
+  "taa_core": {
+    "loc": 2562,
+    "designs": 4,
+    "identical_across_designs": true,
+    "files": {
+      "taa-glsl.js": {
+        "copies": 4,
+        "identical": true,
+        "md5": "7650fa982f6f7a3f18fc11cf3d83c2c5",
+        "loc": 1724
+      },
+      "taa-runtime.js": {
+        "copies": 4,
+        "identical": true,
+        "md5": "cf72bcd58ce9d1c5d09dfd8021c55c74",
+        "loc": 400
+      },
+      "taa-three.js": {
+        "copies": 4,
+        "identical": true,
+        "md5": "bd345880e24f8beb100291bfc33361e0",
+        "loc": 438
+      }
+    }
+  }
+}
